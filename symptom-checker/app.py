@@ -12,11 +12,7 @@ st.set_page_config(
 # ── Load model ───────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-     import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, 'model.pkl')
-
-with open(model_path, 'rb') as f::
+    with open('model.pkl', 'rb') as f:
         return pickle.load(f)
 
 model = load_model()
