@@ -1,22 +1,25 @@
+import os
+import pickle
 import streamlit as st
 import numpy as np
-import pickle
 
-# ── Page config ──────────────────────────────────────────────
+# --- Page config ---
 st.set_page_config(
     page_title="AI Symptom Checker",
     page_icon="🩺",
     layout="centered"
 )
 
-# ── Load model ───────────────────────────────────────────────
+# --- Load model ---
 @st.cache_resource
 def load_model():
-    with open('model.pkl', 'rb') as f:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(BASE_DIR, "model.pkl")
+
+    with open(model_path, "rb") as f:
         return pickle.load(f)
 
 model = load_model()
-
 # ── Disease info ─────────────────────────────────────────────
 disease_info = {
     'Flu': {
